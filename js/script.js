@@ -1,31 +1,33 @@
-let locations = [];
-
-// Fetch the Fortnite map data
-async function fetchMapData() {
-  try {
-    const response = await fetch("https://fortnite-api.com/v1/map");
-    const data = await response.json();
-
-    // Extract POI names
-    locations = data.data.pois.map(poi => poi.name);
-
-    // Update UI
-    document.getElementById("output").innerText = "Press the button!";
-  } catch (error) {
-    console.error("Error fetching map data:", error);
-    document.getElementById("output").innerText = "Failed to load map data 😢";
-  }
-}
+// Manually enter your Fortnite POIs here:
+let locations = [
+  "The Hive",
+  "Swarmy Stash",
+  "O.X.R HQ",
+  "Ranger's Ruin",
+  "First Order Base",
+  "Resistance Base",
+  "Supernova Academy",
+  "Shiny Shafts",
+  "Outlaw Oasis",
+  "Foxy Floodgate",
+  "Utopia City",
+  "Shining Span",
+  "Canyon Crossing",
+  "Demon's Debris",
+  "Shogun's Solitude",
+  "Kappa Kappa Factory",
+  "Outpost Enclave"
+];
 
 // Function to get a random drop location
 function getDrop() {
   if (locations.length === 0) {
-    document.getElementById("output").innerText = "Map data not loaded yet!";
+    document.getElementById("output").innerText = "No POIs available!";
     return;
   }
   const randomIndex = Math.floor(Math.random() * locations.length);
   document.getElementById("output").innerText = locations[randomIndex];
 }
 
-// Load map data when the page starts
-fetchMapData();
+// Initialize UI
+document.getElementById("output").innerText = "Press the button!";
